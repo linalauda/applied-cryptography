@@ -1,0 +1,15 @@
+# .gitignore
+
+# Kompilierte Programme
+crypto
+test_xor
+
+# Temporäre Dateien
+*.o
+*.out
+*.exe
+
+# Ergebnisdateien (optional)
+output.txt
+decrypted.txt
+chapters/chapter01/test_output.txt

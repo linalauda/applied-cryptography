@@ -1,27 +1,14 @@
 #include <stdio.h>
+#include "chapters/chapter01/xor_cipher.h"
 
 int main(int argc, char *argv[]) {
-    FILE *fi, *fo;
-    char *cp;
-    int c;
-
-    // Check for key argument
-    if ((cp = argv[1]) && *cp != '\0') {
-        // Öffne Eingabedatei (read binary)
-        if ((fi = fopen(argv[2], "rb")) != NULL) {
-            // Öffne Ausgabedatei (write binary)
-            if ((fo = fopen(argv[3], "wb")) != NULL) {
-                // Lese Zeichenweise aus Eingabedatei
-                while ((c = getc(fi)) != EOF) {
-                    if (!*cp) cp = argv[1]; // Schlüssel zurücksetzen
-                    c ^= *cp++;             // XOR mit Schlüsselzeichen
-                    putc(c, fo);            // in Ausgabedatei schreiben
-                }
-                fclose(fo);
-            }
-            fclose(fi);
-        }
+    if (argc != 4) {
+        printf("Usage: %s key input_file output_file\n", argv[0]);
+        return 1;
     }
+
+    xor_encrypt(argv[1], argv[2], argv[3]);
     return 0;
 }
+
 
